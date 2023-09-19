@@ -50,11 +50,13 @@ function updateCounter(targetDate) {
     hoursElement.textContent = addLeadingZero(time.hours);
     minutesElement.textContent = addLeadingZero(time.minutes);
     secondsElement.textContent = addLeadingZero(time.seconds);
+
+    options.destroy();
 }
 
 let intervalId;
 
-flatpickr('#datetime-picker', {
+const options = flatpickr('#datetime-picker', {
     enableTime: true,
     time_24hr: true,
     defaultDate: new Date(),
@@ -85,3 +87,5 @@ flatpickr('#datetime-picker', {
         });
     },
 });
+
+document.querySelector('[data-start]').disabled = true;
