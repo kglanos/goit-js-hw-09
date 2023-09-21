@@ -1,5 +1,6 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import Notiflix from 'notiflix';
 
 function addLeadingZero(value) {
     return value < 10 ? `0${value}` : value;
@@ -29,14 +30,7 @@ function updateCounter(targetDate) {
     const timeDifference = targetDate - currentDate;
 
     if (timeDifference < 0) {
-        alert("Please choose a date in the future");
-        return;
-    }
-
-    if (timeDifference === 0) {
-        clearInterval(intervalId);
-        alert("Countdown timer reached zero!");
-        return;
+        Notiflix.Notify.failure("Please choose a date in the future");
     }
 
     const time = convertMs(timeDifference);
@@ -66,11 +60,9 @@ const options = flatpickr('#datetime-picker', {
         const currentDate = new Date();
 
         if (targetDate < currentDate) {
-            alert("Please choose a date in the future");
+            Notiflix.Notify.failure("Please choose a date in the future");
             document.document.querySelector('[data-start]').disabled = true;
-        } else {
-            document.document.querySelector('[data-start]').disabled = false;
-        }
+        } 
     },
     onChange: function (selectedDates) {
             clearInterval(intervalId);
