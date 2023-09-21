@@ -73,7 +73,7 @@ const options = flatpickr('#datetime-picker', {
         }
     },
     onChange: function (selectedDates) {
-        clearInterval(intervalId);
+            clearInterval(intervalId);
         const targetDate = selectedDates[0];
 
         const startButton = document.querySelector('[data-start]');
@@ -82,7 +82,7 @@ const options = flatpickr('#datetime-picker', {
             updateCounter(targetDate);
             intervalId = setInterval(function () {
                 updateCounter(targetDate);
-            }, 1000);
+                }, 1000);
             this.disabled = true;
         });
     },
