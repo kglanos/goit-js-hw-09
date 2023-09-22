@@ -29,10 +29,12 @@ function updateCounter(targetDate) {
     const currentDate = new Date();
     const timeDifference = targetDate - currentDate;
 
-    if (timeDifference < 0) {
+    if (timeDifference <= 1000) {
         Notiflix.Notify.failure("Please choose a date in the future");
+        clearInterval(intervalId);
+        return;
     }
-
+    
     const time = convertMs(timeDifference);
 
     const daysElement = document.querySelector('[data-days]');
@@ -61,7 +63,7 @@ const options = flatpickr('#datetime-picker', {
 
         if (targetDate < currentDate) {
             Notiflix.Notify.failure("Please choose a date in the future");
-            document.document.querySelector('[data-start]').disabled = true;
+            document.querySelector('[data-start]').disabled = true;
         } 
     },
     onChange: function (selectedDates) {
